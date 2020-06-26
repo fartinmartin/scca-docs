@@ -1,0 +1,1016 @@
+/*
+ Theme Name:   Twenty Seventeen Child
+ Template:     twentyseventeen
+*/
+
+/* colors */
+
+:root {
+
+  /* some colors are still set in wedocs styles! */
+
+  --light-gray: #fafafa;
+  --mid-gray: #eeeeee;
+  --dark-gray: #c5c5c5;
+  --darker-gray: #bbbbbb;
+  --black: #333333;
+
+  --primary: #6D9E77;
+  --primary-light: #B9EBC2;
+  --primary-dark: #328041;
+  --secondary: #667EEA;
+
+  --positive: #2F855A;
+  --positive-dark: #276749;
+  --negative: #C53030;
+  --negative-dark: #9B2C2C;
+
+}
+
+/* typography --------------------------------------------------------*/
+
+/* typography | base */
+  body, input, .aa-dropdown-menu { font-family: "proxima-nova", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !important; }
+  h1, h2, h3, h4, h5, h6 { padding: .75em 0 0; }
+  hr { background-color: var(--mid-gray); }
+
+  /*
+  * wp-content/plugins/wedocs/assets/css/frontend.css had been edited
+  * to allow google code prettify take over
+  * unless weDocs has been updated 😨
+  */
+
+  pre, code {
+    border-radius: 3px;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    text-shadow: 0 1px white;
+    background: var(--light-gray) !important;
+  }
+
+  pre {
+    padding: 1.5rem;
+    box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06);
+  }
+
+  code {
+    font-size: .875rem;
+    letter-spacing: .025em;
+    padding: .025em .25em;
+  }
+
+  pre code {
+    padding: 0;
+    font-size: inherit;
+    border: none;
+    background: none;
+  }
+
+  /* article 'tombstone' to signify end of article */
+  .single #page .entry-content::after {
+    content: '🎉';
+    display: block;
+    height: 10px;
+    width: 10px;
+    margin: 0 auto;
+    padding: 2rem 0;
+    position: relative;
+  }
+
+  /* padding for anchor links! this way the fixed header doesn't overlap the heading */
+  h2:target,
+  h3:target {
+    padding-top: 6rem;
+    margin-top: -6rem;
+    animation: colorchange 3s;
+    -webkit-animation: colorchange 3s;
+  }
+
+  @keyframes colorchange
+    {
+      0%   {color: var(--primary-light); text-shadow: 0 0 10px var(--primary-light);}
+      100% {color: #666; text-shadow: none;}
+    }
+
+  @-webkit-keyframes colorchange /* Safari and Chrome - necessary duplicate */
+    {
+      0%   {color: var(--primary-light); text-shadow: 0 0 10px var(--primary-light);}
+      100% {color: #666; text-shadow: none;}
+    }
+
+  /* every list inside a post should have 2rem margin */
+  .entry-content ol,
+  .entry-content ul {
+    margin-left: 2rem;
+  }
+  /* but every first level (immediate child aka ">") list inside a post should have 2.5rem margin */
+  .entry-content > ol,
+  .entry-content > ul {
+    margin-left: 2.5rem;
+  }
+
+/* typography | top level DOC heading */
+  .wedocs-single-wrap .wedocs-sidebar h3.widget-title {
+    color: #222 !important;
+    font-size: 14px !important;
+    font-size: 0.875rem !important;
+    font-weight: 800 !important;
+    letter-spacing: 0.14em !important;
+    text-transform: uppercase !important;
+    margin-bottom: 1.5rem !important;
+  }
+
+/* typography | sidebar (both home (index) page and doc page) */
+
+    /* but first, some resets and hiding of default weDocs elements */
+
+    /* typographic */
+      .wedocs-single-wrap .wedocs-sidebar ul.doc-nav-list li a { padding: 0 !important; }
+      .wedocs-single-wrap .wedocs-sidebar ul.doc-nav-list > li.current_page_parent > a { background: none !important; }
+      .wedocs-single-wrap .wedocs-sidebar ul.doc-nav-list > li.current_page_ancestor li.current_page_item > a { border: none !important; }
+
+      .wedocs-shortcode-wrap ul.wedocs-docs-list li.wedocs-docs-single h3 {
+        border: none !important;
+        padding: 0 !important;
+        line-height: 1.5 !important;
+        margin: 0 !important;
+        margin-bottom: .5rem !important;
+      }
+      .wedocs-shortcode-wrap ul.wedocs-docs-list li.wedocs-docs-single h3 a { box-shadow: none; }
+      .wedocs-shortcode-wrap ul.wedocs-docs-list li.wedocs-docs-single .wedocs-doc-link { display: none; }
+      .wedocs-shortcode-wrap ul.wedocs-docs-list ul.wedocs-doc-sections a { box-shadow: none; }
+
+      /* structural */
+      .wedocs-shortcode-wrap ul.wedocs-docs-list li.wedocs-docs-single {
+        border: none !important;
+        box-shadow: none !important;
+        width: initial !important;
+        clear: initial !important;
+        float: initial !important;
+        position: initial !important;
+        margin: 0 !important;
+        margin-bottom: 2rem !important;
+      }
+      .wedocs-shortcode-wrap ul.wedocs-docs-list li.wedocs-docs-single .inside {
+        min-height: initial !important;
+        padding: 0 !important;
+      }
+      .wedocs-shortcode-wrap ul.wedocs-docs-list ul.wedocs-doc-sections { margin: 0 !important; }
+      .wedocs-single-wrap .wedocs-sidebar ul.doc-nav-list li ul.children { margin: 0 !important; border: none !important; display: block !important; }
+
+      /* okay, now we're good—except for all those !importants! ;) */
+
+/* reset list styles */
+  .wedocs-docs-list,
+  .wedocs-docs-list ul,
+  .doc-nav-list,
+  .doc-nav-list ul {
+    list-style: none !important;
+    padding: 0 !important;
+  }
+
+/* links + hover behavior & active page look */
+  .wedocs-docs-list a,
+  .doc-nav-list a {
+    text-decoration: none !important;
+    display: block !important;
+    color: var(--black) !important;
+    transition: all .2s ease !important;
+    border-radius: 3px !important;
+  }
+
+  .wedocs-docs-list a:hover,
+  .doc-nav-list a:hover {
+    color: #000 !important;
+    transform: translateX(2px) !important;
+  }
+
+  .doc-nav-list .current_page_item > a:hover {
+    color: var(--primary-dark) !important;
+    transform: none !important;
+  }
+
+/* current page item */
+  .current_page_item > a {
+    background: var(--primary-light) !important;
+    /* background: hsla(128, 35, 58, .5) !important; */
+    color: var(--primary-dark) !important;
+  }
+
+/* top level */
+  .wedocs-form-row label,
+  .wedocs-docs-single > h3,
+  .doc-nav-list > li {
+    margin-bottom: 2rem !important;
+    font-size: .75rem !important;
+    text-transform: uppercase !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.095em !important;
+  }
+
+/* top level | headers */
+  .wedocs-docs-single > h3 > a,
+  .doc-nav-list > li > a {
+    color: var(--darker-gray) !important;
+    pointer-events: none !important;
+  }
+
+  .wedocs-docs-single > h3 > a:not(:only-child),
+  .doc-nav-list > li > a:not(:only-child) {
+    margin-bottom: .5rem !important;
+  }
+
+  .doc-nav-list > li.current_page_ancestor > a,
+  .doc-nav-list > li.current_page_item > a {
+    background: none !important;
+    color: var(--black) !important;
+  }
+
+/* second level */
+  .wedocs-doc-sections > li,
+  .doc-nav-list > li > ul > li {
+    font-size: .875rem !important;
+    text-transform: none !important;
+    font-weight: normal !important;
+    letter-spacing: 0 !important;
+    margin-bottom: .25rem !important;
+  }
+
+/* second level | links */
+  .wedocs-doc-sections > li > a,
+  .wedocs-single-wrap .wedocs-sidebar .doc-nav-list > li > ul > li > a,
+  .doc-nav-list > li > ul > li > ul > li > a {
+    padding-left: .5rem !important;
+    padding-right: .5rem !important;
+    margin-left: -.5rem !important;
+    margin-right: -.5rem !important;
+    padding-top: .25rem !important;
+    padding-bottom: .25rem !important;
+    font-weight: 500 !important;
+  }
+
+/* third level */
+/* these styles are just in case someone nests and article within an article
+ * which shouldn't be necessary: just have sections (h2's) inside the articles
+ * weDocs h2's get anchor tags which can be linked to! */
+  .doc-nav-list > li > ul > li > ul > li {
+    margin-top: .25rem !important;
+    padding-left: .5rem !important;
+    padding-right: .5rem !important;
+    padding-top: .25rem !important;
+    padding-bottom: .25rem !important;
+  }
+
+/* now some small clean up for the index page */
+  .wedocs-docs-single > h3 {
+    margin-bottom: .5rem !important;
+  }
+
+  .wedocs-docs-single {
+    margin-bottom: 2rem !important;
+  }
+
+/* and let's fake a heading for the index page */
+  .ais-widget-title,
+  li.wedocs-docs-single:first-of-type::before {
+    content: 'Index';
+    display: block;
+    color: #222 !important;
+    font-size: 14px !important;
+    font-size: 0.875rem !important;
+    font-weight: 800 !important;
+    letter-spacing: 0.14em !important;
+    text-transform: uppercase !important;
+    border-bottom: 1px solid var(--mid-gray);
+    margin: 0 0 15px 0;
+    padding: 0 0 15px 0;
+    margin-bottom: 1.5rem;
+  }
+
+/* typography | breadcrumbs on doc page */
+  .wedocs-single-wrap .wedocs-single-content ol.wedocs-breadcrumb {
+    font-size: .875rem;
+  }
+  .wedocs-single-wrap .wedocs-single-content ol.wedocs-breadcrumb .wedocs-icon-home {
+    color: #999;
+  }
+  .post-edit-link,
+  .wedocs-single-wrap .wedocs-single-content ol.wedocs-breadcrumb a {
+    border-bottom: 1px dotted var(--dark-gray);
+  }
+  .post-edit-link:hover,
+  .wedocs-single-wrap .wedocs-single-content ol.wedocs-breadcrumb a:hover span {
+    color: var(--black) !important;
+  }
+  .post-edit-link,
+  .wedocs-single-wrap .wedocs-single-content ol.wedocs-breadcrumb a,
+  .wedocs-single-wrap .wedocs-single-content ol.wedocs-breadcrumb span {
+    color: var(--darker-gray);
+  }
+
+  .post-edit-link-cont {
+    margin-bottom: 1.25rem;
+  }
+
+  ol.wedocs-breadcrumb i.wedocs-icon {
+    vertical-align: -2px;
+  }
+
+/* end typography section --------------------------------------------------------*/
+
+/* base styles -------------------------------------------------------------------*/
+
+/* base | home (index) page */
+  .home article,
+  .home .panel-content,
+  .home .site-content .wrap,
+  .home .entry-content {
+    height: 100%;
+  }
+
+  .home .site-content .wrap {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+  .home .entry-content {
+    display: flex;
+  }
+
+  .home .home-welcome-content {
+    width: 60%;
+    order: 2;
+    padding: 3rem 3rem;
+    /* height: 100%; */
+    border-left: 1px solid #eee;
+    background: #ffffff;
+  }
+
+  .home .wedocs-shortcode-wrap {
+    padding-top: 3rem;
+    padding-right: 2.25rem;
+    width: 20%;
+    margin-top: 0;
+    order: 1;
+    background: var(--light-gray);
+  }
+
+  .home .entry-header {
+    display: none;
+  }
+
+  .error404 .site-content {
+    background: #ffffff;
+  }
+
+  .search .site-main article {
+    border-bottom: 1px solid var(--mid-gray);
+    padding-bottom: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .has-sidebar:not(.error404) #primary {
+    float: none;
+    width: 100%;
+  }
+
+  #search-results-fix-me-please {
+    background: #ffffff;
+    padding: 0 20%;
+    padding-top: 3rem !important;
+  }
+
+/* base | sticky footer */
+  .site-content-contain {
+    display: flex;
+    min-height: calc(100vh - 75px);
+    flex-direction: column;
+  }
+
+  #content {
+    flex: 1;
+    display: flex;
+  }
+
+/* base | index page max-width reset and spacing fix */
+  .page-one-column .panel-content .wrap,
+  .page.page-one-column:not(.twentyseventeen-front-page) #primary {
+    max-width: initial;
+  }
+
+  .entry-header {
+    margin-bottom: 0 !important;
+  }
+
+  .wedocs-shortcode-wrap {
+    margin-top: 4rem;
+  }
+
+  .home #main > article { margin: 0 auto; }
+
+  .wrap {
+    max-width: 1280px !important;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+/* hard linear-gradient for two tone bg */
+  .site-content {
+    padding-top: 3rem;
+    background-image:
+      linear-gradient(
+        to right,
+        var(--light-gray),
+        var(--light-gray) 50%,
+        #ffffff 50%,
+        #ffffff 100%
+      );
+  }
+
+  .search-results .site-content {
+    background-image:
+      linear-gradient(
+        to right,
+        var(--light-gray),
+        var(--light-gray) 20%,
+        #ffffff 20%,
+        #ffffff 100%
+      );
+  }
+
+/* end base styles ---------------------------------------------------------------*/
+
+/* header styles -----------------------------------------------------------------*/
+
+/* header | base */
+  #masthead {
+    border-bottom: 1px solid var(--mid-gray);
+  }
+
+  .site-branding-text {
+    width: 20%;
+  }
+
+  .site-title {
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 15px
+  }
+
+  .site-description {
+    display: none;
+  }
+
+  .site-branding {
+    padding: 1rem 0;
+  }
+
+  .site-branding .wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .header-nonlogostuff {
+    display: flex;
+    width: 80%;
+    align-items: center;
+  }
+
+/* header | search bar */
+  #header-widget-area {
+    width: 75%;
+    padding-left: 3rem !important;
+    padding-right: 3rem !important;
+  }
+
+  .chw-widget h2,
+  .wedocs-search-in {
+    display: none;
+  }
+
+  .search-form .search-submit {
+    bottom: 0;
+    top: 0;
+    right: 0;
+    border-radius: 3px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    font-weight: normal !important;
+    background: var(--darker-gray);
+  }
+
+  .search-is-focused {
+    background: var(--black) !important;
+  }
+
+  input[type="search"] {
+    padding: .5rem;
+    padding-left: .75rem;
+  }
+
+  input[type="search"]::placeholder {
+    color: var(--dark-gray);
+  }
+
+  input[type="search"]:valid:focus {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom-color: var(--dark-gray);
+  }
+
+  input[type="search"]:invalid {
+    box-shadow: none;
+  }
+
+  label[for="search-form-1"] {
+    margin-bottom: 0;
+  }
+
+/* header & footer | (contact) links */
+  .contact-link {
+    width: 25%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    font-size: .875rem;
+  }
+
+  footer a,
+  .contact-link a {
+    border-bottom: 1px dotted var(--dark-gray);
+    text-decoration: none;
+  }
+
+  footer a:hover,
+  .contact-link a:hover {
+    opacity: .7;
+  }
+
+/* contact form */
+  .wedocs-form-row label { margin-bottom: .5rem !important; }
+  .wedocs-form-row { margin-bottom: 2rem !important; }
+  .wedocs-form-action { display: flex; justify-content: flex-end !important; }
+  .wedocs-form-action input { border-radius: 3px !important; }
+  .wedocs-form-row:nth-child(3) { display: none !important; } /* hide subject line */
+  .wedocs-contact-modal { padding: 3rem !important; }
+  .wedocs-contact-modal .wedocs-modal-header { text-align: initial !important; padding: 0 !important; }
+  .wedocs-contact-modal .wedocs-modal-body { padding: 0 !important; }
+  .wedocs-contact-modal .wedocs-modal-close:hover { background: none !important; }
+  .wedocs-contact-modal .wedocs-modal-close {
+    height: 3rem !important;
+    width: 3rem !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    background: none !important;
+  }
+
+/* end header styles -------------------------------------------------------------*/
+
+/* algolia styles ----------------------------------------------------------------*/
+
+/* algolia | main */
+  #algolia-search-box {
+    display: none !important;
+  }
+
+  .search-results .site-content > .wrap {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+  }
+
+  #ais-wrapper {
+    height: 100% !important;
+  }
+
+  #ais-main {
+    padding: 0 3rem !important;
+    padding-top: 3rem !important;
+    padding-bottom: 3rem !important;
+    width: 60% !important;
+    order: 2 !important;
+  }
+
+  #ais-facets {
+    width: 20% !important;
+    order: 1 !important;
+    padding: 0 !important;
+    padding-top: 3rem !important;
+    background: var(--light-gray);
+    height: 100%;
+  }
+
+  .search-form .search-submit .icon {
+    height: 16px !important;
+    width: 16px !important;
+  }
+
+/* algolia | auto complete suggestions */
+  .aa-dropdown-menu {
+    border: 1px solid var(--black);
+    border-top: none;
+    border-bottom-left-radius: 3px !important;
+    border-bottom-right-radius: 3px !important;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.01), 0 1px 2px 0 rgba(0, 0, 0, 0.02) !important;
+    font-size: .875rem !important;
+  }
+
+  .aa-dropdown-menu a {
+    font-size: .875rem !important;
+  }
+
+  .aa-dropdown-menu .aa-suggestion:first-of-type {
+    padding-top: 15px !important;
+  }
+
+  .aa-dropdown-menu .aa-suggestion .suggestion-post-title {
+    letter-spacing: .025em !important;
+    font-weight: 700;
+  }
+
+  /* remove section heading (it's always "docs") */
+  .autocomplete-header {
+    display: none !important;
+  }
+
+  .autocomplete-footer-branding {
+    filter: grayscale(100%);
+  }
+
+  .aa-dropdown-menu .aa-suggestion {
+    /* padding: 1.5rem 0 !important; */
+  }
+
+/* results styles */
+  .ais-hits--item {
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--mid-gray);
+  }
+
+  .ais-breadcrumb {
+    color: var(--dark-gray);
+  }
+
+  .ais-menu--header .widgettitle {
+    margin-bottom: .5rem !important;
+    font-size: .75rem !important;
+    text-transform: uppercase !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.095em !important;
+    color: var(--darker-gray) !important;
+  }
+
+  #ais-facets {
+    padding-right: 2.25rem !important;
+  }
+
+  .ais-menu--count {
+    font-family: monospace;
+    font-size: .75rem;
+    padding: .25em;
+    border: 1px solid var(--black);
+    background: var(--mid-gray);
+    border-radius: 3px;
+    vertical-align: 1px;
+    opacity: .5;
+  }
+
+  .ais-menu--item .ais-menu--link {
+    font-size: .875rem !important;
+    margin-bottom: .25rem !important;
+    display: block !important;
+    transition: all .2s ease !important;
+  }
+
+  .ais-menu--item .ais-menu--link:hover {
+    transform: translateX(2px) !important;
+  }
+
+/* end algolia styles ------------------------------------------------------------*/
+
+/* wedocs styles -----------------------------------------------------------------*/
+
+/* wedocs | base */
+
+  .site-content {
+    padding-top: 0 !important;
+  }
+
+  .home .site-content > .wrap,
+  .error404 .site-content > .wrap,
+  .single-post .site-content > .wrap,
+  .page .site-content > .wrap,
+  .search-results .site-content > .wrap,
+  .archive .site-content > .wrap {
+    padding: 3rem 1.5rem;
+  }
+
+  .site-footer {
+    margin-top: 0;
+  }
+
+  .content-area, .wrap, .site-main { display: flex; flex: 1; }
+  .wedocs-single-wrap { height: 100%; }
+
+  /* sidebar */
+  .wedocs-single-wrap .wedocs-sidebar {
+    width: 20% !important;
+    padding-top: 3rem;
+    padding-right: 2.25rem;
+    background: var(--light-gray);
+  }
+
+  /* main section
+   * which contains "wedocs-single-content"
+   * and meta sidebar wedocs-right-sidebar */
+  .wedocs-content-wrap {
+    display: flex;
+    width: 80%;
+  }
+
+  /* main section | main content */
+  .wedocs-single-wrap .wedocs-single-content {
+    width: 75%;
+    padding: 3rem !important;
+    background: #ffffff;
+  }
+
+  /* main section | meta sidebar */
+  .wedocs-right-sidebar {
+    width: 25%;
+    color: var(--dark-gray);
+    font-style: italic;
+    font-size: .875rem;
+
+    border-left: 1px solid var(--mid-gray);
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+    padding-top: 0;
+    padding-left: 2rem;
+    padding-right: 1.5rem;
+    background: #ffffff;
+  }
+
+  /* "was this article helpful?" */
+  .wedocs-feedback-wrap {
+    padding-top: 0 !important;
+    margin-top: 1.25rem !important;
+    text-align: initial !important;
+  }
+
+  .wedocs-feedback-wrap a.positive,
+  .wedocs-feedback-wrap a.negative {
+    opacity: .75;
+    padding: 0;
+    margin: 0;
+  }
+
+  .wedocs-feedback-wrap a.positive,
+  .wedocs-feedback-wrap a.positive:hover,
+  .wedocs-feedback-wrap a.negative,
+  .wedocs-feedback-wrap a.negative:hover {
+    background: none !important;
+    border: none !important;
+  }
+
+  .wedocs-feedback-wrap a.positive {
+    color: var(--positive) !important;
+    border-bottom: 1px dotted var(--dark-gray) !important;
+    margin-right: 1rem;
+  }
+
+  .wedocs-feedback-wrap a.positive:hover {
+    color: var(--positive-dark) !important;
+    border-bottom: 1px dotted var(--positive-dark) !important;
+  }
+
+  .wedocs-feedback-wrap a.negative {
+    color: var(--negative) !important;
+    border-bottom: 1px dotted var(--dark-gray) !important;
+  }
+
+  .wedocs-feedback-wrap a.negative:hover {
+    color: var(--negative-dark) !important;
+    border-bottom: 1px dotted var(--negative-dark) !important;
+  }
+
+  /* remove contact form from bottom of article
+   * it is replaced in the header */
+  .wedocs-entry-footer {
+    display: none !important;
+  }
+
+  /* wedocs | search result page */
+  .search-no-results .site-content > .wrap {
+    padding-top: 3rem;
+  }
+
+  /* wedocs | images */
+  .wp-block-image > img {
+    margin: 1rem auto;
+  }
+
+  /* next and previous article navigation */
+  .wedocs-doc-nav {
+    margin-top: 3rem;
+  }
+
+/* end wedocs styles -------------------------------------------------------------*/
+
+/* footer styles -----------------------------------------------------------------*/
+
+/* footer | base */
+  #colophon {
+    height: 74px;
+  }
+
+
+  #colophon > .wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  /* remove psuedo elements so flex distribution works as expected */
+  #colophon > .wrap::after {
+    display: none;
+  }
+
+  .scca-links {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .scca-links li:not(:last-child) {
+    margin-right: 1rem;
+  }
+
+/* end footer styles -------------------------------------------------------------*/
+
+/* fixed header styles -----------------------------------------------------------*/
+
+#masthead {
+  position: fixed;
+  z-index: 900;
+  top: 0;
+  left: 0;
+  width: 100%;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.01), 0 1px 2px 0 rgba(0, 0, 0, 0.02);
+}
+
+.site-content-contain {
+  margin-top: 4.5rem;
+}
+
+/* end fixed header styles -------------------------------------------------------*/
+
+/* wordpress styles --------------------------------------------------------------*/
+
+.logged-in #masthead { top: 32px; }
+#wpadminbar { padding: 0 1rem !important; }
+
+/* end wordpress styles ----------------------------------------------------------*/
+
+/* mobile last styles :( ---------------------------------------------------------*/
+
+.hod { display: none !important; }
+.hot { display: none !important; }
+
+@media screen and (max-width: 870px) {
+  .home .home-welcome-content { width: 80%; }
+}
+
+@media screen and (max-width: 768px) {
+
+  .hod { display: initial !important; }
+
+  .site-content-contain { margin-top: 3rem !important; }
+
+  /* header | search */
+  .site-branding-text { width: 25% !important; }
+  .header-nonlogostuff { width: 100% !important; }
+  #header-widget-area { width: 100% !important; padding-right: 0 !important; padding-left: 2.25rem !important; }
+  .chw-widget { padding-left: 2.25rem !important; padding-right: 1rem; }
+
+  /* header | feedback */
+  .contact-link { display: none; }
+  .menu-toggle { margin-right: -1em; }
+  input { font-size: .875rem; }
+
+  /* home | sidebar */
+  .home .wedocs-shortcode-wrap { width: 25%; }
+
+  /* home | content */
+  .home .home-welcome-content { width: 75%; padding-left: 2.25rem; padding-right: 0; }
+
+  /* docs | base */
+  .wedocs-content-wrap { flex-direction: column; background: #ffffff; border-left: 1px solid #eeeeee; }
+
+  /* docs | sidebar */
+  .wedocs-single-wrap .wedocs-sidebar { width: 25%; }
+
+  /* docs | content */
+  .wedocs-single-wrap { display: flex !important; }
+  .wedocs-single-wrap .wedocs-single-content { width: 100%; border: none; padding-left: 2.25rem; padding-right: 0; }
+
+  /* docs | move meta sidebar */
+  .wedocs-right-sidebar { width: 100%; margin-top: 0; border: none; padding-left: 2.25rem; padding-right: 0; }
+
+  /* search results */
+  #ais-main { width: 100% !important; padding-left: 0 !important; padding-right: 0 !important; }
+  .search-results .site-content { background: #ffffff; padding-bottom: 6rem; }
+
+  /* feedback link */
+  .wedocs-help-link { margin-left: 1rem; }
+
+  /* wordpress search results */
+  #search-results-fix-me-please {
+    padding: 0 1.5rem;
+    padding-top: 3rem !important;
+  }
+}
+
+@media screen and (max-width: 680px) {
+
+  .hom { display: none !important; }
+  .hot { display: initial !important; }
+
+  .menu-toggle { margin-right: -1em; }
+  .menu-toggle .icon { margin-right: 0; top: initial; }
+
+  .menu-toggle.expanded .icon-bars { display: none; }
+  .menu-toggle.expanded .icon-close { display: inline-block; }
+
+  .wedocs-single-wrap, .entry-content { flex-direction: column; }
+  .chw-widget { padding-left: 0 !important; padding-right: 0; }
+
+  /* header */
+  .site-branding-text { width: auto; padding-right: 1rem; }
+  input { font-size: .875rem; }
+  #header-widget-area { padding-left: 0 !important; padding-right: .5rem !important; }
+  .site-content-contain { margin-top: 4rem !important; }
+
+  /* home | sidebar */
+  .home .wedocs-shortcode-wrap { display: none; }
+
+  /* home | content */
+  .home .home-welcome-content { border-left: none; width: 100%; padding-left: 0 !important; padding-right: 0 !important; }
+
+  /* docs | sidebar */
+  .wedocs-single-wrap .wedocs-sidebar { display: none; width: 100% !important; }
+
+  /* docs | base */
+  .wedocs-content-wrap { width: 100%; border: none; }
+  .wedocs-single-wrap .wedocs-single-content { padding-left: 0 !important; padding-right: 0 !important; }
+  .site-content { background: #ffffff; }
+
+  /* docs | move meta sidebar */
+  .wedocs-right-sidebar { padding: 0; }
+
+  /* home | sidebar */
+  .wedocs-shortcode-wrap ul.wedocs-docs-list li.wedocs-docs-single {
+    margin-right: 0 !important;
+  }
+
+  .wedocs-single-wrap .wedocs-sidebar,
+  .home .wedocs-shortcode-wrap {
+    display: none;
+    width: 100%;
+    top: 0;
+    right: 0;
+    z-index: 100;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  .wedocs-single-wrap .wedocs-sidebar.dn,
+  .home .wedocs-shortcode-wrap.dn {
+    display: block;
+    box-sizing: content-box;
+    margin-left: -1.5rem;
+  }
+
+  /* algolia */
+  .algolia-autocomplete { width: calc(100vw + 2px) !important; left: -1px !important; }
+  .algolia-autocomplete > *:first-child {
+    border-radius: 0 !important;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.01), 0 1px 2px 0 rgba(0, 0, 0, 0.02);
+  }
+
+  /* feedback link */
+  .wedocs-help-link { margin-left: 1rem; }
+}
+
+@media screen and (max-width: 570px) {
+  .site-branding { padding: .25rem 0; }
+  .site-content-contain { margin-top: 3rem !important; }
+  #colophon { height: auto; }
+  #colophon > .wrap { flex-direction: column; }
+  #colophon > .wrap > * { display: flex; flex-direction: column; width: 100%; margin-bottom: 1rem; }
+  #colophon > .wrap > * > * { margin-bottom: .5rem; align-self: flex-start; }
+  .wedocs-help-link { margin-left: 0; }
+}
+
+/* end of mobile last styles -----------------------------------------------------*/
+/* end of styles -----------------------------------------------------------------*/
